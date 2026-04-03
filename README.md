@@ -1,36 +1,106 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎓 Lecto — AI Lecture Companion
 
-## Getting Started
+Transform lectures into study superpowers. Upload or record a lecture and get AI-generated notes, flashcards, quizzes, and an interactive Q&A chatbot — in under a minute.
 
-First, run the development server:
+![Lecto](https://img.shields.io/badge/HackNation%202026-Submission-7c5cfc?style=flat-square)
+![Next.js](https://img.shields.io/badge/Next.js-15-black?style=flat-square)
+![OpenAI](https://img.shields.io/badge/OpenAI-Whisper%20%2B%20GPT--4o-412991?style=flat-square)
+
+## 🚀 What It Does
+
+1. **Upload** a lecture recording (audio or video)
+2. **Transcribe** — OpenAI Whisper converts speech to text with high accuracy
+3. **Generate Study Materials** — GPT-4o creates:
+   - 📝 **Structured Notes** — organized with headers, key terms, and takeaways
+   - 🃏 **Flashcards** — Anki-style cards for active recall practice
+   - ✅ **Practice Quiz** — multiple choice with explanations
+4. **Chat** — ask questions about the lecture content and get AI-powered answers
+
+## 🎯 The Problem
+
+Students spend hours rewatching lectures, taking incomplete notes, and creating study materials manually. Passive listening leads to poor retention. Active learning techniques (flashcards, self-testing) are proven to be far more effective, but creating these materials is time-consuming.
+
+## 💡 The Solution
+
+Lecto bridges the gap between passive lecture consumption and active studying. One upload gives you everything you need to master the material — notes to review, flashcards to drill, quizzes to test yourself, and a chatbot to clarify concepts.
+
+## 🛠 Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| **Frontend** | Next.js 15 (App Router), Tailwind CSS v4, Motion (Framer Motion) |
+| **Backend** | Next.js API Routes |
+| **Transcription** | OpenAI Whisper API |
+| **AI Generation** | OpenAI GPT-4o |
+| **UI Components** | Custom components with Lucide icons |
+
+## 🏃 Getting Started
 
 ```bash
+# Clone the repo
+git clone https://github.com/bennetttv/lecto.git
+cd lecto
+
+# Install dependencies
+npm install
+
+# Set up environment variables
+cp .env.example .env.local
+# Add your OPENAI_API_KEY to .env.local
+
+# Run the dev server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to start using Lecto.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📁 Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+├── app/
+│   ├── api/
+│   │   ├── transcribe/    # Audio upload + Whisper + GPT-4o pipeline
+│   │   ├── chat/          # Q&A chat endpoint
+│   │   ├── session/[id]/  # Session retrieval
+│   │   └── sessions/      # Session listing
+│   ├── layout.tsx         # App layout with fonts + metadata
+│   ├── page.tsx           # Main app (landing, upload, processing, results)
+│   └── globals.css        # Design tokens, dark theme, markdown styles
+├── components/
+│   ├── lecture/
+│   │   ├── upload-zone.tsx        # Drag & drop file upload
+│   │   ├── processing-screen.tsx  # Animated processing stages
+│   │   ├── results-dashboard.tsx  # Tab-based results view
+│   │   ├── notes-view.tsx         # Rendered study notes
+│   │   ├── flashcards-view.tsx    # Interactive flashcard review
+│   │   ├── quiz-view.tsx          # Multiple choice quiz
+│   │   └── chat-view.tsx          # Lecture Q&A chat
+│   └── ui/
+│       ├── button.tsx     # Animated button component
+│       └── card.tsx       # Glass-effect card component
+└── lib/
+    ├── openai.ts          # OpenAI client
+    ├── prompts.ts         # AI prompt templates
+    ├── store.ts           # In-memory session store
+    ├── types.ts           # TypeScript types
+    └── utils.ts           # Utility functions
+```
 
-## Learn More
+## 🎨 Design
 
-To learn more about Next.js, take a look at the following resources:
+- **Dark mode** — easy on the eyes for late-night study sessions
+- **Purple accent** — distinctive and academic
+- **Animated transitions** — smooth, orchestrated entrances with Motion
+- **Glass effects** — backdrop blur, translucent surfaces, layered depth
+- **Responsive** — works on desktop and mobile
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🏆 Built For
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**HackNation: 5th Global AI Hackathon** — April 2026
+- $28,500 prize pool
+- Theme: Build with AI
 
-## Deploy on Vercel
+## 📄 License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT
